@@ -438,7 +438,7 @@ class Booking extends React.Component {
           width: wp("60%"),
           backgroundColor: "#fb5b5a",
           borderRadius: 25,
-          height: hp(6),
+          height: hp(5),
           alignItems: "center",
           justifyContent: "center",
         }} onPress={() => this.SaveOnPress()}>
