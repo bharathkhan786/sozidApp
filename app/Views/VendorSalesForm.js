@@ -11,7 +11,7 @@ import { Radio } from 'native-base';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
 import SozidUrl from '../SozidUrl';
-
+import BCDatePicker from '../BCDatePicker';
 class VendorSalesForm extends React.Component {
     constructor(props) {
         super(props);
@@ -561,131 +561,47 @@ class VendorSalesForm extends React.Component {
                             onChangeText={text => this.setState({ Vendor_pin: text == '' ? null : text })} />
                     </View>
                     <View style={styles.inputView} >
-                        <DatePicker
-                            style={{ width: "100%" }}
-                            date={this.state.opens_at}
-                            mode="datetime"
+                        <BCDatePicker
+                            name="Select Opens At"
                             placeholder="Select Opens At"
+                            onchange={(date) => { this.setState({ opens_at: date }) }}
                             format="YYYY-MM-DD HH:mm"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    right: -10,
-                                    top: 4,
-                                    marginLeft: 0,
-                                },
-                                dateInput: {
-                                    // backgroundColor: "#465881",
-                                    borderRadius: 25,
-                                    justifyContent: "center",
-                                    borderColor: "#465881"
-                                },
-                                placeholderText: {
-                                    color: '#003f5c'
-                                },
-                                dateText: {
-                                    color: 'white'
-                                }
-                            }}
-                            onDateChange={(date) => { this.setState({ opens_at: date }) }}
+                            type="datetime"
+                            value={this.state.opens_at}
+                            disabled={false}
                         />
                     </View>
                     <View style={styles.inputView} >
-                        <DatePicker
-                            style={{ width: "100%" }}
-                            date={this.state.closes_at}
-                            mode="datetime"
+                        <BCDatePicker
+                            name="Select Closes At"
                             placeholder="Select Closes At"
+                            onchange={(date) => { this.setState({ closes_at: date }) }}
                             format="YYYY-MM-DD HH:mm"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    right: -10,
-                                    top: 4,
-                                    marginLeft: 0,
-                                },
-                                dateInput: {
-                                    // backgroundColor: "#465881",
-                                    borderRadius: 25,
-                                    justifyContent: "center",
-                                    borderColor: "#465881"
-                                },
-                                placeholderText: {
-                                    color: '#003f5c'
-                                },
-                                dateText: {
-                                    color: 'white'
-                                }
-                            }}
-                            onDateChange={(date) => { this.setState({ closes_at: date }) }}
+                            type="datetime"
+                            value={this.state.closes_at}
+                            disabled={false}
                         />
                     </View>
                     <View style={styles.inputView} >
-                        <DatePicker
-                            style={{ width: "100%" }}
-                            date={this.state.token_start}
-                            mode="datetime"
+                        <BCDatePicker
+                            name="Select Token Start"
                             placeholder="Select Token Start"
+                            onchange={(date) => { this.setState({ token_start: date }) }}
                             format="YYYY-MM-DD HH:mm"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    right: -10,
-                                    top: 4,
-                                    marginLeft: 0,
-                                },
-                                dateInput: {
-                                    // backgroundColor: "#465881",
-                                    borderRadius: 25,
-                                    justifyContent: "center",
-                                    borderColor: "#465881"
-                                },
-                                placeholderText: {
-                                    color: '#003f5c'
-                                },
-                                dateText: {
-                                    color: 'white'
-                                }
-                            }}
-                            onDateChange={(date) => { this.setState({ token_start: date }) }}
+                            type="datetime"
+                            value={this.state.token_start}
+                            disabled={false}
                         />
                     </View>
                     <View style={styles.inputView} >
-                        <DatePicker
-                            style={{ width: "100%" }}
-                            date={this.state.token_ends}
-                            mode="datetime"
+                        <BCDatePicker
+                            name="Select Token Ends"
                             placeholder="Select Token Ends"
+                            onchange={(date) => { this.setState({ token_ends: date }) }}
                             format="YYYY-MM-DD HH:mm"
-                            confirmBtnText="Confirm"
-                            cancelBtnText="Cancel"
-                            customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    right: -10,
-                                    top: 4,
-                                    marginLeft: 0,
-                                },
-                                dateInput: {
-                                    // backgroundColor: "#465881",
-                                    borderRadius: 25,
-                                    justifyContent: "center",
-                                    borderColor: "#465881"
-                                },
-                                placeholderText: {
-                                    color: '#003f5c'
-                                },
-                                dateText: {
-                                    color: 'white'
-                                }
-                            }}
-                            onDateChange={(date) => { this.setState({ token_ends: date }) }}
+                            type="datetime"
+                            value={this.state.token_ends}
+                            disabled={false}
                         />
                     </View>
                     <View style={{ flexDirection: 'row' }}>
