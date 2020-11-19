@@ -12,9 +12,14 @@ export default class PushController extends Component {
       onNotification: function (notification) {
         console.log('NOTIFICATION:', notification);
       },
+      permissions: {
+        alert: true,
+        badge: false,
+        sound: true
+        },
       requestPermissions: Platform.OS === 'ios',
       popInitialNotification: true,
-      senderID: "373460443899"
+      // senderID: "373460443899"
     });
   }
 

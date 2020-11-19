@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { Radio } from 'native-base';
 import DatePicker from 'react-native-datepicker';
-// import PushController from './PushController';
-// import PushNotification from 'react-native-push-notification';
+import PushController from './PushController';
+import PushNotification from 'react-native-push-notification';
 import SozidUrl from '../SozidUrl';
 // import * as NetInfo from '@react-native-community/netinfo';
 import NetConnection from './NetConnection';
@@ -28,7 +28,7 @@ class Login extends React.Component {
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
     }
     componentDidMount() {
-        // AppState.addEventListener('change', this.handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
 
         // NetInfo.isConnected.fetch().then((isConnected) => {
@@ -43,7 +43,7 @@ class Login extends React.Component {
 
     componentWillUnmount() {
         // NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-        // AppState.removeEventListener('change', this.handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
     // handleConnectivityChange = (isConnected) => {
     //     if (isConnected == true) {
@@ -54,7 +54,22 @@ class Login extends React.Component {
     //     }
     // }
     handleAppStateChange(appState) {
+        console.log(appState);
+      
         if (appState === 'active') {
+            // PushNotification.localNotification({
+            //     autoCancel: true,
+            //     bigText:
+            //       'This is local notification demo in React Native app. Only shown, when expanded.',
+            //     subText: 'Local Notification Demo',
+            //     title: 'Local Notification Title',
+            //     message: 'Expand me to see more',
+            //     vibrate: true,
+            //     vibration: 300,
+            //     playSound: true,
+            //     soundName: 'default',
+            //     actions: '["Yes", "No"]'
+            //   });
             // let basectx = { appState: appState }
             // return fetch(SozidUrl.SozidUrl + '/api/Values/changePassword', {
             //     method: 'POST',
@@ -100,6 +115,7 @@ class Login extends React.Component {
             //     });
         }
         else if (appState === 'background') {
+            console.log('background');
             // setTimeout(() => {
             // let basectx = { appState: appState }
             // return fetch(SozidUrl.SozidUrl + '/api/Values/changePassword', {
@@ -144,17 +160,19 @@ class Login extends React.Component {
             //     });
             // }, 3000)
 
-            // let date = new Date(Date.now() + (1 * 1000));
+            let date = new Date(Date.now() + (1 * 1000));
 
-            // if (Platform.OS === 'ios') {
-            //     date = date.toISOString();
-            // }
-            // PushNotification.localNotificationSchedule({
-            //     message: "My Notification Message",
-            //     date,
-            // });
+            if (Platform.OS === 'ios') {
+                date = date.toISOString();
+            }
+            PushNotification.localNotificationSchedule({
+                message: "My Message",
+                date,
+                allowWhileIdle: true,
+            });
         }
         else if (appState === 'inactive') {
+            console.log(appState);
             let basectx = { appState: appState }
             return fetch(SozidUrl.SozidUrl + '/api/Values/changePassword', {
                 method: 'POST',
